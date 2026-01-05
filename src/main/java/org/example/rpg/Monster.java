@@ -19,5 +19,19 @@ public abstract class Monster {
     public double getDamage(){
         return damage;
     }
+    public double attack(){
+        double totalDamage =getDamage();
+        // Eğer bu canavar Bleedable yeteneğine sahipse bleed() hasarını ekle
+        if (this instanceof Bleedable) {
+            totalDamage += ((Bleedable) this).bleed();
+        }
+
+        // Eğer bu canavar Poisonable yeteneğine sahipse poison() hasarını ekle
+        if (this instanceof Poisonable) {
+            totalDamage += ((Poisonable) this).poison();
+        }
+
+        return totalDamage;
+    }
 
 }
